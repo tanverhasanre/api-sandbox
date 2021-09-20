@@ -51,6 +51,8 @@ app.post("/sms-gateway", (req, res, err) => {
     }
     console.log(decoded);
   });
+  console.log("Request Body ========= \n");
+  console.log(req.body);
   res.sendStatus(200);
 });
 
