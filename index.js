@@ -34,13 +34,12 @@ app.post("/sms-gateway", (req, res, err) => {
     throw new Error("Secret is not provided");
   }
   console.log("Secret : "+ secret);
-  try {
-    jwt.verify(token, secret);
-  } catch (error) {
-    throw new Error("Token verification failed : " + error);
-  }
-  console.log("Token Verification successful");
-  console.log(req.body);
+  jwt.verify(token,secret,function(err,decoded){
+      if(err){
+          throw new Error("Error : "+ err)
+      }
+      console.log(decoded);
+  })
   res.sendStatus(200);
 });
 
