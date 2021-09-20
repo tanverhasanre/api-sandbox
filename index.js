@@ -11,6 +11,7 @@ app.use(express.urlencoded({extended: true}));
 
 app.use((req, res, next) => {
   console.log("/" + req.method, req.path);
+  console.log("Authorization Token" +req.headers.authorization);
   next();
 });
 
