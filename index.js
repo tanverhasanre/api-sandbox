@@ -39,10 +39,10 @@ app.post("/sms-gateway", (req, res, err) => {
     if (err) {
       throw new Error("Error : " + err);
     }
-    console.log(decoded);
+    console.log(JSON.stringify(decoded));
   });
   console.log("Request Body ========= \n");
-  console.log(req.body);
+  console.log(JSON.stringify(req.body));
   res.sendStatus(200);
 });
 
