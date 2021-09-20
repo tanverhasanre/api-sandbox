@@ -3,7 +3,7 @@ const express = require("express");
 const path = require("path");
 const _ = require("lodash");
 const jwt = require("jsonwebtoken");
-
+const { getToken} = require("./utils");
 const port = process.env.PORT || 8081;
 const secret = process.env.SECRET;
 
@@ -16,21 +16,11 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get("/", (req, res, err) => {
-  res.send("sms-gateway server");
+app.post("/webhook", (req, res, err) => {
+  console.log("Headers : "+ JSON.stringify(req.headers));
+  console.log("Body : "+ JSON.stringify(req.body));
+  res.sendStatus(200);
 });
-
-function getToken(req) {
-  if (
-    req.headers.authorization &&
-    req.headers.authorization.split(" ")[0] === "Bearer"
-  ) {
-    return req.headers.authorization.split(" ")[1];
-  } else if (req.query && req.query.token) {
-    return req.query.token;
-  }
-  return null;
-}
 
 app.post("/sms-gateway", (req, res, err) => {
   const token = getToken(req);
@@ -56,7 +46,6 @@ app.post("/sms-gateway", (req, res, err) => {
   res.sendStatus(200);
 });
 
-(async() => {
-
-app.listen(port, () => console.log(`server is running on ${port}`));
+(async () => {
+  app.listen(port, () => console.log(`server is running on ${port}`));
 })();
