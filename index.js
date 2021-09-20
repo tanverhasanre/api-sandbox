@@ -20,10 +20,22 @@ app.get("/", (req, res, err) => {
   res.send("sms-gateway server");
 });
 
+function getToken (req) {
+    console.log("called");
+
+    if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
+        return req.headers.authorization.split(' ')[1];
+    } else if (req.query && req.query.token) {
+      return req.query.token;
+    }
+    return null;
+}
+
 app.post("/sms-gateway", (req, res, err) => {
  
 
-  const token = req.headers.authorization || null;
+  const token = getToken(req);
+
   if (!token) {
     throw new Error("Authorization token is required");
   }
