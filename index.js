@@ -23,6 +23,10 @@ app.post("/webhook", (req, res, err) => {
 });
 
 app.post("/sms-gateway", (req, res, err) => {
+
+  console.log("Headers : "+ JSON.stringify(req.headers));
+  console.log("Body : "+ JSON.stringify(req.body));
+  
   const token = getToken(req);
 
   if (!token) {
@@ -34,7 +38,7 @@ app.post("/sms-gateway", (req, res, err) => {
     throw new Error("Secret is not provided");
   }
   console.log("Secret : " + secret);
-
+  
   jwt.verify(token, secret, function (err, decoded) {
     if (err) {
       throw new Error("Error : " + err);
