@@ -16,6 +16,18 @@ app.use((req, res, next) => {
   next();
 });
 
+app.get("/test_http",(req,res,err)=>{
+  console.log("Headers : "+ JSON.stringify(req.headers));
+  console.log("Body : "+ JSON.stringify(req.body));
+  const user={
+    name:"abcd",
+    age:20,
+    kyc: true,
+    phone:"07832953525"
+  }
+  res.status(200).send(user);
+});
+
 app.post("/webhook", (req, res, err) => {
   console.log("Headers : "+ JSON.stringify(req.headers));
   console.log("Body : "+ JSON.stringify(req.body));
