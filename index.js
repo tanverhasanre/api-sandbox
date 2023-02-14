@@ -4,6 +4,8 @@ const path = require("path");
 const _ = require("lodash");
 const jwt = require("jsonwebtoken");
 const querystring = require("querystring");
+const urlParser = require('url');
+
 
 const { getToken, validateAPIKey } = require("./utils");
 const port = process.env.PORT || 8081;
@@ -36,16 +38,17 @@ app.post("/webhook", (req, res, err) => {
   res.sendStatus(200);
 });
 
-app.post("/proxy", (req, res, err) => {
+app.get("/proxy", (req, res, err) => {
   console.log("Headers : " + JSON.stringify(req.headers));
   console.log("Body : " + JSON.stringify(req.body));
 
-  const parsed = querystring.parse(location.search);
-  const appUrl=parsed.destination_url;
-  const state= parsed.state;
-  const code=parsed.code; 
+  const parsedUrl = urlParser.parse(req.url,true).query;
+  console.log(parsedUrl);
+  const appUrl=parsedUrl.destination_url;
+  const state= parsedUrl.state;
+  const code=parsedUrl.code; 
   const url = `${appUrl}?code=${code}&state=${state}`;
-
+  console.log(url);
   res.redirect(url);
 });
 
