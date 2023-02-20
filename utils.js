@@ -1,3 +1,19 @@
+const jwksClient = require("jwks-rsa");
+var jwt = require("jsonwebtoken-tool");
+
+const client = jwksClient({
+  jwksUri: "https://tanver-custom.eu.auth0.com/.well-known/jwks.json",
+  requestHeaders: {}, // Optional
+  timeout: 30000, // Defaults to 30s
+});
+
+const publicKey = async () => {
+  const kid = "nWtdsC1agQOSKHLa_pino";
+  const key = await client.getSigningKey(kid);
+  const signingKey = key.getPublicKey();
+  return signingKey;
+};
+
 function getToken(req) {
   if (
     req.headers.authorization &&
@@ -19,7 +35,21 @@ function validateAPIKey(api_key) {
   return false;
 }
 
+const validateToken = async (token) => {
+  const key = await publicKey();
+  if (key) {
+    jwt.verify(token, key, { audience: "http://localhost:3000" }, (e, p) => {
+      if (e) {
+        return new Error(e);
+      }
+      return true;
+    });
+  }
+};
+
 module.exports = {
   getToken,
   validateAPIKey,
+  publicKey,
+  validateToken
 };
