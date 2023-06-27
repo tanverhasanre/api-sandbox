@@ -12,7 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "dotenv": "^10.0.0",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "jsonwebtoken-tool": "^1.1.0",
     "jwks-rsa": "^3.0.1",
     "lodash": "^4.17.21",
