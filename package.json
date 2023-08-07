@@ -13,7 +13,7 @@
   "dependencies": {
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
-    "jsonwebtoken-tool": "^3.0.0",
+    "jsonwebtoken-tool": "3.0.0",
     "jwks-rsa": "^3.0.1",
     "lodash": "^4.17.21",
     "query-string": "^8.1.0",
