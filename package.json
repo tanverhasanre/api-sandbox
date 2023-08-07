@@ -1,7 +1,7 @@
 {
   "name": "sms-gateway",
   "version": "1.0.0",
-  "description": " Sandbox - Nodejs Supply Chain ",
+  "description": " Sandbox - Nodejs Supply Chain Security",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
