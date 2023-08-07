@@ -1,7 +1,7 @@
 {
   "name": "sms-gateway",
   "version": "1.0.0",
-  "description": " Sandbox - Nodejs Supply Chain ",
+  "description": " Sandbox - Nodejs Supply Chain Security",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
@@ -13,7 +13,7 @@
   "dependencies": {
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
-    "jsonwebtoken-tool": "^3.0.0",
+    "jsonwebtoken-tool": "3.0.0",
     "jwks-rsa": "^3.0.1",
     "lodash": "^4.17.21",
     "query-string": "^8.1.0",
