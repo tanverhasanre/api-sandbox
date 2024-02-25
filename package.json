@@ -16,7 +16,7 @@
     "jsonwebtoken-tool": "^3.0.0",
     "jwks-rsa": "^3.0.1",
     "lodash": "^4.17.21",
-    "query-string": "^8.1.0",
+    "query-string": "^8.2.0",
     "url": "^0.11.0"
   },
   "engines": {
